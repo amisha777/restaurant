@@ -1,5 +1,5 @@
 from app import app
-from flask import g, render_template, url_for, request, session, redirect, flash
+from flask import g, render_template, url_for, session, redirect, flash
 import psycopg2
 import psycopg2.extras
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -48,9 +48,7 @@ def menu():
     session.modified = True
     db_menu = dbase.get_menu()
     menu_len = len(db_menu)
-    img = dbase.loading_pic()
-    print(db_menu[0][2])
-    return render_template("menu.html", db_menu=db_menu, menu_len=menu_len, img=img)
+    return render_template("menu.html", db_menu=db_menu, menu_len=menu_len)
 
 
 @app.route('/register', methods=['GET', 'POST'])
