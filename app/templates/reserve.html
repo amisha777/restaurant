@@ -10,6 +10,15 @@
 <body link="#2f4f4f" vlink="#000000" alink="#191970" bgcolor="black">
  <h2 style="text-transform:uppercase">бронирование столика в ресторане "У Аминишны"</h2>
         <hr>
+ {% with messages = get_flashed_messages() %}
+        {% if messages %}
+                <ul>
+                         {% for message in messages %}
+                         <li>{{ message }}</li>
+                         {% endfor %}
+                </ul>
+        {% endif %}
+        {% endwith %}
  <form class="form-login"  method="post">
         {{ reserve_form.hidden_tag() }}
         {{ reserve_form.date_resform() }}{{ reserve_form.date_resform.label() }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp

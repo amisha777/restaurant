@@ -38,7 +38,6 @@ def close_db(error):
 # маршрут главной страницы
 @app.route('/')
 def home():
-    print(session)
     return render_template('home.html')
 
 
@@ -60,7 +59,6 @@ def register():
     if reg_form.validate_on_submit():
 
         _hashed_password = generate_password_hash(reg_form.password_regform.data)
-        print(_hashed_password)
 
         account = dbase.get_account(reg_form.login_regform.data)
 
@@ -132,8 +130,11 @@ def reserve():
                    f'{reserve_form.time_resform.data.minute % 10}'
         return render_template('bron.html', reserve_form=reserve_form, databron=databron)
     else:
-        flash('ужасное время')
-    return render_template('reserve.html', reserve_form=reserve_form)
+        if reserve_form.submit_resform.data:
+            flash('Неправильный формат времени')
+            return redirect(url_for('reserve'))
+        else:
+            return render_template('reserve.html', reserve_form=reserve_form)
 
 
 @app.route('/delivery', methods=['GET', 'POST'])
@@ -151,9 +152,8 @@ def delivery():
         databron = f'{delivery_form.time_delform.data.hour}:{delivery_form.time_delform.data.minute // 10}' \
                    f'{delivery_form.time_delform.data.minute % 10}'
         return render_template('zakaz.html', delivery_form=delivery_form, databron=databron)
-        # if 'loggedin' in session:
     return render_template('delivery.html', delivery_form=delivery_form)
-    # return redirect(url_for('login'))
+
 
 
 @app.route('/basket', methods=['GET', 'POST'])
@@ -207,6 +207,7 @@ def basket():
 @app.route('/logout')
 def logout():
     session.pop('loggedin', None)
+    session.clear()
     return redirect(url_for('home'))
 
 
