@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <title>Регистрация</title>
+        <style> body {background: #008080;
+                        color: #f0f8ff;}
+        </style>
+</head>
+<body link="#2f4f4f" vlink="#000000" alink="#191970" bgcolor="black">
+        <h2 style="text-transform:uppercase">Register</h2>
+        <hr>
+
+        <form class="form-register" action="{{ url_for('register') }}" method="post">
+                {{ reg_form.hidden_tag() }}
+                {{ reg_form.login_regform(placeholder="Enter your login") }}{{ reg_form.login_regform.label() }}<br>
+                {{ reg_form.password_regform(placeholder="Enter your password") }}{{ reg_form.password_regform.label }}<br>
+                {{ reg_form.fio_regform(placeholder="Enter your full name") }}{{ reg_form.fio_regform.label }}<br>
+                {{ reg_form.phone_regform(placeholder="Enter your phone") }}{{ reg_form.phone_regform.label }}<br>
+                {{ reg_form.submit_regform() }}<br>
+                <a href="{{ url_for('login') }}">If you want to log in, click here</a>
+        </form>
+</body>
+</html>

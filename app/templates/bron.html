@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Бронь</title>
+    <style> body {background: #008080;
+                        color: #f0f8ff;}
+    </style>
+</head>
+<body link="#2f4f4f" vlink="#000000" alink="#191970" bgcolor="black">
+
+    <h2 style="text-transform:uppercase">Ваше бронирование</h2>
+        <hr>
+<table class="table table-hover table-info table-striped">
+    <colgroup>
+    <col span="6"style="background:#f0f8ff">
+    <col style="background-color:black">
+
+  </colgroup>
+
+            <thead>
+                <tr style="color: #008080;">
+                    <th scope="col">Количество человек</th>
+                    <th scope="col">Дата</th>
+                    <th scope="col">Время</th>
+                    <th scope="col">ФИО</th>
+                    <th scope="col">Номер телефона</th>
+                    <th scope="col">Пожелания</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr style="color: #008080;">
+                    <td align="center">{{ reserve_form.people_number_resform.data }}</td>
+                    <td align="center">{{ reserve_form.date_resform.data }}</td>
+                    <td align="center">{{ databron }}</td>
+                    <td align="center">{{ reserve_form.fio_resform.data }}</td>
+                    <td align="center">{{ reserve_form.phone_resform.data }}</td>
+                    <td align="center">{{ reserve_form.vish_resform.data }}</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+        <hr>
+<p style="text-transform:uppercase">ожидайте подтверждения бронирования. <br>
+    на указанный номер телефона придёт sms-подтверждение</p>
+<a href="{{ url_for('home') }}">Вернуться на главную страницу</a>
+
+</body>
+</html>

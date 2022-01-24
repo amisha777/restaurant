@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Подтверждение бронирования</title>
+        <style> body {background: #008080;
+                        color: #f0f8ff;}
+        </style>
+</head>
+<body link="#2f4f4f" vlink="#000000" alink="#191970" bgcolor="black">
+<center><h2 style="text-transform:uppercase">Неподтверженные брони</h2>
+        <hr>
+    <p>{{ podbron_form.hidden_tag() }}</p>
+<table class="table">
+        <colgroup>
+                <col span="7"style="background:#f0f8ff">
+        </colgroup>
+            <thead>
+                <tr style="color: #008080;">
+                    <th scope="col">Количество человек</th>
+                    <th scope="col">Дата</th>
+                    <th scope="col">Время</th>
+                    <th scope="col">ФИО</th>
+                    <th scope="col">Номер телефона</th>
+                    <th scope="col">Пожелания</th>
+                    <th scope="col">Номер резерва</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for i in range(podbron_len) %}
+                <tr style="color: #008080;">
+                    <td align="center">{{ db_podbron[i][0] }}</td>
+                    <td align="center">{{ db_podbron[i][1] }}</td>
+                    <td align="center">{{ db_podbron[i][2] }}</td>
+                    <td align="center">{{ db_podbron[i][3] }}</td>
+                    <td align="center">{{ db_podbron[i][4] }}</td>
+                    <td align="center">{{ db_podbron[i][5] }}</td>
+                    <td align="center">{{ db_podbron[i][6] }}</td>
+                    <td align="center"><form class="form-login" action="{{ url_for('podbron') }}" method="post">
+                        {{ podbron_form.submit_id_podbronform(value=db_podbron[i][6]) }}
+                        {{ podbron_form.submit_add_podbronform() }}</form></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <hr>
+        </center>
+    <center><a href="{{ url_for('lk') }}">Вернуться на домашнюю страницу</a></center>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Заказать</title>
+    <style> body {background: #008080;
+                        color: #f0f8ff;}
+    </style>
+</head>
+<body link="#2f4f4f" vlink="#000000" alink="#191970" bgcolor="black">
+<h2 style="text-transform:uppercase">корзина</h2>
+        <hr>
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+                <ul>
+                         {% for message in messages %}
+                         <li>{{ message }}</li>
+                         {% endfor %}
+                </ul>
+        {% endif %}
+        {% endwith %}
+    <form class="form-login" action="{{ url_for('basket') }}" method="post">
+        <p>{{ basket_form.hidden_tag() }}</p>
+        {{ basket_form.dish_basketform() }}{{ basket_form.dish_basketform.label() }}<br>
+        {{ basket_form.kol_basketform() }}{{ basket_form.kol_basketform.label() }}<br>
+        {{ basket_form.submit_add_basketform() }} {{ basket_form.submit_basketform() }}<br>
+
+<hr>
+<h3 style="text-transform:uppercase">ваш заказ:</h3>
+<table class="table">
+        <colgroup>
+                <col span="3"style="background:#f0f8ff">
+        </colgroup>
+            <thead>
+                <tr style="color: #008080;">
+                    <th scope="col">Блюдо</th>
+                    <th scope="col">Количество порций</th>
+                    <th scope="col">Цена за количество</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for i in range(0, session['table_basket_len'] - 2, 3) %}
+                <tr style="color: #008080;">
+                    <td align="center">{{session['table_basket'][i]}}</td>
+                    <td align="center">{{session['table_basket'][i+1]}}</td>
+                    <td align="center">{{session['table_basket'][i+2]}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+<hr>
+<h3>Сумма к оплате: {{ session['summ_price'] }} руб.</h3>
+{{ basket_form.submit_next_basketform() }}<br>
+</form><br>
+<a href="{{ url_for('home') }}">Вернуться на главную страницу</a>
+</body>
+</html>
