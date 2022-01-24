@@ -9,9 +9,9 @@ from app.DataBase import DataBase
 
 # Подключение к СУБД через драйвер psycopg2
 def connect_db():
-    conn = psycopg2.connect(dbname="d7ahpk0rbq0pth",
-                            user="aanagckfygyezv",
-                            password="b68163b34754853746b81d41b1d727f52e7d86f4a4196fb346878c83f2647bed",
+    conn = psycopg2.connect(dbname="d5potb3ven05ib",
+                            user="zvnifpvjlzgdnt",
+                            password="b41ec9fd0cabb249244b7f74df5fc698f1b535c80ee20fad93591245779f8bd1",
                             host="ec2-34-242-89-204.eu-west-1.compute.amazonaws.com")
     return conn
 
